@@ -1,12 +1,12 @@
 import {
   Heart,
   List,
-  ShoppingCartSimple,
   User,
   X,
 } from "@phosphor-icons/react";
 import logo from "../assets/logo.png";
 import { useEffect, useState } from "react";
+import CartWidget from "./CartWidget";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,11 +28,11 @@ const NavBar = () => {
       path: "/favorite",
       icon: <Heart size={28} weight="bold" />,
     },
-    {
-      title: "Carrinho",
-      path: "/car",
-      icon: <ShoppingCartSimple size={28} weight="bold" />,
-    },
+    // {
+    //   title: "Carrinho",
+    //   path: "/car",
+    //   icon: <ShoppingCartSimple size={28} weight="bold" />,
+    // },
     {
       title: "Login",
       path: "/login",
@@ -61,6 +61,7 @@ const NavBar = () => {
             {isOpen ? link.title : link.icon}
           </a>
         ))}
+        <CartWidget />
       </nav>
       {isOpen ? (
         <X
