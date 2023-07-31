@@ -61,8 +61,9 @@ const NavBar = () => {
             {isOpen ? link.title : link.icon}
           </a>
         ))}
+
         <CartWidget />
-      </nav>
+S      </nav>
       {isOpen ? (
         <X
           className="sm:hidden hover:text-primary duration-300 cursor-pointer"

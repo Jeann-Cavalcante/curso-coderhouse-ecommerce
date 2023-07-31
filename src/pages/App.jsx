@@ -5,7 +5,10 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <ItemListContainer title="Produtos" />
+      <div className="flex justify-center items-center">
+      <ItemListContainer title="Produtos" qtd="2" />
+
+      </div>
     </div>
   );
 }

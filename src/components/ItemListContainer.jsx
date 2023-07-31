@@ -1,7 +1,8 @@
-const ItemListContainer = ({title}) => {
+const ItemListContainer = ({title, qtd}) => {
   return (
     <div>
-      <h1>{title}</h1>
+      <h1>Produto: {title}</h1>
+      <p>Quantidade: {qtd}</p>
     </div>
   );
 }
