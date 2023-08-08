@@ -1,0 +1,10 @@
+.container {
+  color: blue;
+  background: green;
+}
+
+.container + p {
+  color: red;
+  background: yellow;
+}
+
