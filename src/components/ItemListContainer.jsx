@@ -1,16 +1,39 @@
-import { useEffect, useState } from "react";
-import ItemCount from "./ItemCount";
-import Item from "./item";
+// ItemListContainer.js
+import { useState, useEffect } from "react";
+import ItemList from "./ItemList";
+
+const mockItems = [
+  {
+    id: 1,
+    title: "Product 1",
+    description: "Description for Product 1",
+    price: 19.99,
+    pictureUrl: "https://example.com/product1.jpg",
+  },
+  // ... Add more mock items here
+];
+
+const fetchItems = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(mockItems);
+    }, 2000); // Simulate a 2-second delay
+  });
+};
 
 const ItemListContainer = () => {
-  const [count, setCount] = useState(1);
+  const [items, setItems] = useState([]);
 
+  useEffect(() => {
+    fetchItems().then((data) => setItems(data));
+  }, []);
 
   return (
-    <div>
-      <Item />
+    <div className="item-list-container">
+      <h2>Product List</h2>
+      <ItemList items={items} />
     </div>
   );
-}
+};
 
 export default ItemListContainer;
