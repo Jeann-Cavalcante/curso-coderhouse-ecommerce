@@ -1,13 +1,14 @@
-import ItemList from "../components/ItemList";
-import NavBar from "../components/NavBar";
+import { BrowserRouter, Route, Routes, Switch } from "react-router-dom";
+import Cart from "../components/Cart";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <NavBar />
-      <ItemList />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/cart" component={Cart} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
