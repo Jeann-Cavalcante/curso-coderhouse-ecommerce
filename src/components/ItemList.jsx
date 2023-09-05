@@ -1,40 +1,35 @@
 // ItemListContainer.js
 import { useState, useEffect } from "react";
-import ItemList from "./ItemList";
-
-const mockItems = [
-  {
-    id: 1,
-    title: "Product 1",
-    description: "Description for Product 1",
-    price: 19.99,
-    pictureUrl: "https://example.com/product1.jpg",
-  },
-  // ... Add more mock items here
-];
-
-const fetchItems = () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(mockItems);
-    }, 2000);
-  });
-};
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase/config";
 
 const ItemListContainer = () => {
   const [items, setItems] = useState([]);
 
-  useEffect(() => {
-    fetchItems().then((data) => {
-      setItems(data);
-      console.log(data);
+  const getItems = async () => {
+    const querySnapshot = await getDocs(collection(db, "items"));
+    let data = [];
+    querySnapshot.forEach((doc) => {
+      console.log(`${doc}`);
+      data.push(doc.data());
     });
+    setItems(data);
+  };
+
+  useEffect(() => {
+    getItems();
   }, []);
 
   return (
     <div className="item-list-container">
       <h2>Product List</h2>
-      <ItemList items={items} />
+      {items.map((item) => (
+        <div key={item.id}>
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+          <p>{item.price}</p>
+        </div>
+      ))}
     </div>
   );
 };
